@@ -9,6 +9,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
+}
+
+model Produtos {
+  id Int @id @default(autoincrement())
+  nomeProduto String @unique
+  descricao String
+  valor Float
+  createdAt DateTime @default(now())
+  deletedAt DateTime? @default(now())
+
 }
