@@ -13,12 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Produtos {
+model Categorias {
   id Int @id @default(autoincrement())
-  nomeProduto String @unique
-  descricao String
-  valor Float
+  nomeCategoria String @unique
   createdAt DateTime @default(now())
   deletedAt DateTime? @default(now())
+  produtos Produtos[]
+}
 
+model Produtos {
+  id Int @id @default(autoincrement())
+  categoriaId Int
+  categoria Categorias @relation(fields: [categoriaId], references: [id])
+  nomeProduto String @unique
+  descricao String
+  preco Float
+  createdAt DateTime @default(now())
+  deletedAt DateTime? @default(now())
 }
