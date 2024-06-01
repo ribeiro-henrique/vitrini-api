@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, MinLength, MaxLength } from "class-validator";
+import { IsNotEmpty, IsString, IsNumber, IsPositive, MinLength, MaxLength } from "class-validator";
 
 export class ProdutoDto {
     
@@ -18,6 +18,8 @@ export class ProdutoDto {
     @MaxLength(150)
     readonly descricao: string;
 
+    @IsNotEmpty()
     @IsNumber()
+    @IsPositive()
     readonly preco: number;
 }

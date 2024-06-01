@@ -1,5 +1,6 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Controller, Get, Post, Body } from "@nestjs/common";
 import { ProdutosService } from "./produtos.service";
+import { ProdutoDto } from "src/Dtos/produtos.dto";
 
 @Controller('produtos')
 export class ProdutosController {
@@ -9,6 +10,9 @@ export class ProdutosController {
     return this.produtosService.getProdutos()
   }
 
-  // @Post()
-  
+  @Post() 
+    criaProduto(@Body() produto: ProdutoDto): ProdutoDto {
+      return this.produtosService.criaProduto(produto)
+  }
 }
+  
